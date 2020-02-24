@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="REICTEventScheduler.Views.LoginPage"
+             BackgroundImageSource="MasjiedGhiedmatielIslamia.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,30,0,0" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                    <Label Text="REICT" VerticalOptions="Center" FontSize="60" TextColor="White" FontAttributes="Bold" />
+                </ContentView>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Label Text="EVENT SCHEDULER" HorizontalOptions="Center" FontSize="28" TextColor="White" FontAttributes="Bold" />
+
+                <StackLayout Orientation="Vertical" Padding="20,20,20,0" Spacing="10" HorizontalOptions="CenterAndExpand">
+                    <Label Text="Login" VerticalOptions="Center" FontSize="24" TextColor="FloralWhite" FontAttributes="Bold" />
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" Padding="20,0,20,0" Spacing="0" HorizontalOptions="StartAndExpand">
+                    <Label Text="Cell Number" VerticalOptions="Center" HorizontalOptions="Start" FontSize="14" TextColor="White" FontAttributes="Bold" />
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" Padding="20,0,20,0" Spacing="0" HorizontalOptions="StartAndExpand">
+                    <Frame CornerRadius="20" Opacity="0.7">
+                        <Entry Text="0837775608" Keyboard="Numeric" x:Name="txtCellNumber" Placeholder="Cell Number" MaxLength="10" BackgroundColor="White" WidthRequest="300" TextChanged="txt_TextChanged" />
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" Padding="20,0,20,0" Spacing="0" HorizontalOptions="StartAndExpand">
+                    <Label Text="Password" VerticalOptions="Center" HorizontalOptions="Start" FontSize="14" TextColor="White" FontAttributes="Bold" />
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" Padding="20,0,20,0" Spacing="0" HorizontalOptions="StartAndExpand">
+                    <Frame CornerRadius="20" Opacity="0.7">
+                        <Entry Text="12345" x:Name="txtPassword" Opacity="0.5" Placeholder="Password" IsPassword="True" MaxLength="20" BackgroundColor="White" WidthRequest="300" TextChanged="txt_TextChanged" />
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" Padding="20,0,20,0" Spacing="0" >
+                    <Button x:Name="btnLogon" Text="Login" IsTabStop="True" IsEnabled="False" Visual="Material" BackgroundColor="CornflowerBlue" TextColor="White" Clicked="btnLogon_Clicked"></Button>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" Padding="20,0,0,0" Spacing="0" >
+                    <Label Text="{Binding CopyRight}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="10" TextColor="White" FontAttributes="Bold" />
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" Padding="20,0,0,0" Spacing="10" >
+                    <Label Text="{Binding SystemVersion}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="10" TextColor="White" FontAttributes="Bold" />
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+
+    </Grid>
+</ContentPage>

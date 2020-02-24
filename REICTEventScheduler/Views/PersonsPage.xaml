@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:local="clr-namespace:REICTEventScheduler.Services"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="REICTEventScheduler.Views.PersonsPage"
+             Title="{Binding Title}"
+             x:Name="EventsPage"
+             BackgroundColor="Black">
+
+    <StackLayout>
+        <ScrollView>
+            <Frame CornerRadius="15">
+                <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Padding="10,10,10,10">
+                    <Label Margin="0,0,0,10" Text="Users" FontAttributes="Bold" FontSize="Large" TextColor="Gray" HorizontalTextAlignment="Center" ></Label>
+
+                    <Label Text="Name" FontSize="Small" />
+                    <Entry x:Name="txtName" Placeholder="Enter Name" TextChanged="txt_TextChanged"></Entry>
+
+                    <Label Text="Surname" FontSize="Small" />
+                    <Entry x:Name="txtSurname" Placeholder="Enter Surname" TextChanged="txt_TextChanged"></Entry>
+
+                    <Label Text="Cell Number" FontSize="Small" />
+                    <Entry x:Name="txtCellNumber" Placeholder="Enter Cell Number" MaxLength="10" TextChanged="txt_TextChanged" Keyboard="Numeric"></Entry>
+
+                    <Label Text="Password" FontSize="Small" />
+                    <Entry x:Name="txtPassword" IsPassword="True" Placeholder="Enter Password" TextChanged="txt_TextChanged"></Entry>
+
+                    <Label Text="Role" FontSize="Small" />
+                    
+                    <Picker x:Name="lstRole" Title="Select title"></Picker>
+                    <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                        <Button x:Name="btnAdd" WidthRequest="160" Text="Add Person" Clicked="BtnAdd_Clicked" CornerRadius="15" IsEnabled="False"/>
+                        <Button x:Name="btnCancel" WidthRequest="160" Text="Cancel" CornerRadius="15" Clicked="btnCancel_Clicked" IsVisible="False" />
+                    </StackLayout>
+                
+                    <ListView x:Name="lstPersons" ItemSelected="lstPersons_ItemSelected">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell Text="{Binding Name}"></TextCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </StackLayout>
+            </Frame>
+        </ScrollView>
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="REICTEventScheduler.Views.MetaDataDetailPage"
+             Title="{Binding Title}">
+
+    <StackLayout>
+
+        <AbsoluteLayout x:Name="active" IsVisible="{Binding IsBusy}"
+                 VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+            <BoxView
+              AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" 
+              AbsoluteLayout.LayoutFlags="PositionProportional"          
+             />
+
+            <ActivityIndicator
+              AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1" 
+              AbsoluteLayout.LayoutFlags="PositionProportional"          
+              IsRunning="True"
+              VerticalOptions="CenterAndExpand"
+              HorizontalOptions="CenterAndExpand"/>
+        </AbsoluteLayout>
+
+        <Label Text="Name:" FontSize="Small" />
+        <Label Text="{Binding Event.Name}" d:Text="Item name" FontSize="Medium" Padding="20,0,0,10" BackgroundColor="{Binding Event.Colour}" TextColor="White" x:Name="lblEventName" />
+
+        <Label Text="Description:" FontSize="Small" />
+        <Label Text="{Binding Event.Description}" d:Text="Item description" FontSize="Medium" Padding="20,0,0,10"/>
+
+        <Label Text="Time:" FontSize="Small" />
+        <Label Text="{Binding Event.Time, StringFormat='{0: dd MMMM yyyy hh:mm:ss}'}" d:Text="Item description" FontSize="Medium" Padding="20,0,0,10"/>
+
+        <Label Text="Remaining Time:" FontSize="Small" />
+        <Label Text="Next event" d:Text="Item description" FontSize="Medium" Padding="20,0,0,10" x:Name="lblTime" />
+
+        <Label Text="First Respondent:" FontSize="Small" />
+        <Label Text="{Binding FirstRespondent}" d:Text="Item description" FontSize="Medium" Padding="20,0,0,10" x:Name="lblFirstRespondent"/>
+
+        <Label Text="Second Respondent:" FontSize="Small" />
+        <Label Text="{Binding SecondRespondent}" d:Text="Item description" FontSize="Medium" Padding="20,0,0,10" x:Name="lblSecondRespondent"/>
+
+        <Label Text="Third Respondent:" FontSize="Small" />
+        <Label Text="{Binding ThirdRespondent}" d:Text="Item description" FontSize="Medium" Padding="20,0,0,10" x:Name="lblThirdRespondent"/>
+
+        <Button Clicked="Button_Clicked" x:Name="button" Text="Reject" CommandParameter="{Binding}"></Button>
+        
+    </StackLayout>
+    
+</ContentPage>

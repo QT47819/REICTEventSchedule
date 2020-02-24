@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:local="clr-namespace:REICTEventScheduler.Services"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="REICTEventScheduler.Views.ReportPage"
+             Title="{Binding Title}"
+             x:Name="EventsPage"
+             BackgroundColor="Black">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CountdownConverter x:Key="intCountDown"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <StackLayout>
+            <Frame CornerRadius="15">
+                <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start">
+                    <Label Margin="0,0,0,10" Text="Reports" FontAttributes="Bold" FontSize="Large" TextColor="Gray" HorizontalTextAlignment="Center" ></Label>
+                    <Label Margin="0,0,0,10" Text="There is no data to display" FontAttributes="Bold" FontSize="Small" TextColor="Black" HorizontalTextAlignment="Center" ></Label>
+                    <ListView x:Name="lstReport">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell Text="{Binding Name}"></TextCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

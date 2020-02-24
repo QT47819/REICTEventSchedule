@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:local="clr-namespace:REICTEventScheduler.Services"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="REICTEventScheduler.Views.EventPage"
+             Title="{Binding Title}"
+             x:Name="EventsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddEvent_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CountdownConverter x:Key="intCountDown"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <StackLayout>
+        <ListView x:Name="EventsListView"
+                ItemsSource="{Binding Events}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadEventsCommand}"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RetainElement"
+                ItemSelected="OnEventSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="0,0,0,10">
+                            <Frame x:Name="frmEvent" CornerRadius="30" BorderColor="{Binding Colour}" Padding="30">
+                                <Grid x:Name="grdEvent" ColumnSpacing="0" RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="25" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="{Binding Name}" 
+                                        d:Text="{Binding .}"
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        TextColor="{Binding Colour}"
+                                        FontSize="22" 
+                                        Grid.Column="0" 
+                                        Grid.Row="0" 
+                                        Grid.ColumnSpan="3"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="StartAndExpand" />
+
+                                    <Label Text="Description" 
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListItemTextStyle}" 
+                                        VerticalTextAlignment="Center"
+                                        FontSize="12" 
+                                        Grid.Column="0" 
+                                        Grid.Row="1" />
+                                    <Label Text="{Binding Description}" 
+                                        d:Text="Item description"
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontAttributes="Bold"
+                                        FontSize="20" 
+                                        TextColor="Black"
+                                        Grid.Column="1" 
+                                        Grid.Row="1" 
+                                        Grid.ColumnSpan="2" 
+                                        HorizontalOptions="EndAndExpand" />
+
+                                    <Label Text="Date" 
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListItemTextStyle}" 
+                                        FontSize="12" 
+                                        Grid.Column="0" 
+                                        Grid.Row="2" />
+                                    <Label Text="{Binding Time, StringFormat='{0: dd MMMM yyyy}'}" 
+                                        d:Text="Item Date"
+                                        LineBreakMode="WordWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="18" 
+                                        Grid.Column="1" 
+                                        Grid.Row="2" 
+                                        Grid.ColumnSpan="2" 
+                                        HorizontalOptions="End" />
+
+                                    <Label Text="Time" 
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListItemTextStyle}" 
+                                        FontSize="12" 
+                                        Grid.Column="0" 
+                                        Grid.Row="3" />
+                                    <Label Text="{Binding Time, StringFormat='{0: hh:mm}'}" 
+                                        d:Text="Item Time"
+                                        LineBreakMode="WordWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="18" 
+                                        Grid.Column="1" 
+                                        Grid.Row="3" 
+                                        Grid.ColumnSpan="2" 
+                                        HorizontalOptions="End" />
+
+                                    <!--<Label Text="Time remaining" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="12" Grid.Column="0" Grid.Row="4" />
+                                    <Label Text="" 
+                                        x:Name="lblCountdown"
+                                        d:Text="Countdown"
+                                        LineBreakMode="WordWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="20" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="End" />-->
+
+                                    <!--<CheckBox
+                                        Grid.Column="0"
+                                        Grid.Row="4"
+                                        IsChecked="{Binding AlarmSet, Mode=TwoWay}">
+                                        <CheckBox.Triggers>
+                                            <DataTrigger TargetType="CheckBox" Binding="{Binding AlarmSet}" Value="True">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                        </CheckBox.Triggers>
+                                    </CheckBox>
+                                    <Label
+                                        Text="{Binding AlarmText}"
+                                        Grid.Column="1"
+                                        Grid.Row="4"
+                                        VerticalTextAlignment="Center" />-->
+
+                                    <Button 
+                                        Text="Confirm Attendance" 
+                                        Clicked="Button_Clicked" 
+                                        Grid.Column="0" 
+                                        Grid.Row="4" 
+                                        Grid.ColumnSpan="3" 
+                                        CommandParameter="{Binding}" 
+                                        IsVisible="{Binding IsVisible}"
+                                        TextColor="{Binding Colour}"
+                                        BackgroundColor="White"
+                                        FontAttributes="Bold"
+                                        CornerRadius="15"/>
+
+                                    <!--<Button 
+                                        x:Name="btnSetAlarm"
+                                        Clicked="Button_Clicked_1" 
+                                        Text="Set Alarm"
+                                        CommandParameter="{Binding}" 
+                                        TextColor="{Binding Colour}"
+                                        BackgroundColor="White"
+                                        FontAttributes="Bold"
+                                        CornerRadius="15"
+                                        IsVisible="False">
+                                        
+                                        <Button.Triggers>
+                                            <DataTrigger TargetType="Button" Binding="{Binding IsVisible}" Value="True">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                        </Button.Triggers>
+
+                                    </Button>-->
+
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+    
+</ContentPage>
