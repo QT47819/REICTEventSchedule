@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "484993420113",
+    "firebase_url": "https://reiteventscheduler.firebaseio.com",
+    "project_id": "reiteventscheduler",
+    "storage_bucket": "reiteventscheduler.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484993420113:android:2103b1e8602757fe9d2170",
+        "android_client_info": {
+          "package_name": "com.RNLS.reicteventscheduler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484993420113-q5tdbvv4be80ddnfncan8v954ru0vlr6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDanQ3CqDxcK98XxqCIJXhUo6GySJuYJzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484993420113-q5tdbvv4be80ddnfncan8v954ru0vlr6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
