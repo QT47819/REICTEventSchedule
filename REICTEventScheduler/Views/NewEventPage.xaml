@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="REICTEventScheduler.Views.NewEventPage"
              Title="New Event"
-             BackgroundColor="Black">
+             BackgroundColor="CornflowerBlue">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" CommandParameter="{Binding}" />
@@ -14,16 +14,16 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Black">
+        <StackLayout BackgroundColor="CornflowerBlue" Padding="0">
             <ScrollView>
                 <Frame x:Name="frmEvent" CornerRadius="30" BorderColor="CornflowerBlue" Padding="30">
-                    <StackLayout HorizontalOptions="Start" VerticalOptions="Start">
-                        <Label Margin="0,0,0,10" Text="Add new event" FontAttributes="Bold" FontSize="Large" TextColor="Gray" HorizontalTextAlignment="Center" ></Label>
+                    <StackLayout HorizontalOptions="Start" VerticalOptions="Start" Padding="0">
+                        <Label Margin="0,0,0,10" Text="Add new event" FontAttributes="Bold" FontSize="Large" TextColor="CornflowerBlue"></Label>
                     
-                        <Label Text="Event Name" FontSize="Large"></Label>
+                        <Label Text="Event Name"></Label>
                         <Entry x:Name="txtName" Placeholder="Enter Name"></Entry>
 
-                        <Label Text="Description and details"></Label>
+                        <Label Text="Description"></Label>
                         <Entry x:Name="txtdescription" Placeholder="Enter Description"></Entry>
                     
                         <Label Text="Date"></Label>
@@ -32,7 +32,7 @@
                         <Label Text="Time"></Label>
                         <TimePicker x:Name="tpEventTime" />
 
-                        <Label Text="Current events" FontSize="Large"></Label>
+                        <Label Text="Current events" FontSize="Large" TextColor="CornflowerBlue"></Label>
                         <ListView x:Name="lstEvents" >
                             <ListView.ItemTemplate>
                                 <DataTemplate>

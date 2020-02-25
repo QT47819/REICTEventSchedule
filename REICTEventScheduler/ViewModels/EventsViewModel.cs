@@ -15,8 +15,6 @@ namespace REICTEventScheduler.ViewModels
 {
     public class EventsViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        //public ObservableCollection<Event> Events { get; set; }
-
         private ObservableCollection<Event> events;
         public ObservableCollection<Event> Events
         {
@@ -63,7 +61,7 @@ namespace REICTEventScheduler.ViewModels
             });
         }
 
-        public string AddFormatEventName(string eventName, DateTime eventTime, int eventNumber)
+        public string AddFormatEventName(string eventName, DateTime eventTime, int eventNumber, bool addEventNumber = false)
         {
             string formattedEvent = RemoveFormatEventName(eventName, eventTime);
             string dayFormatter;
@@ -75,8 +73,10 @@ namespace REICTEventScheduler.ViewModels
             else
                 dayFormatter = eventName + " " + eventTime.ToString("dd MMMM yyyy");
 
-            //return eventNumber + ": " + dayFormatter;
-            return dayFormatter;
+            if (addEventNumber)
+                return eventNumber + ": " + dayFormatter;
+            else
+                return dayFormatter;
         }
 
         private string RemoveFormatEventName(string eventName, DateTime eventTime)
@@ -287,7 +287,14 @@ namespace REICTEventScheduler.ViewModels
             finally
             {
                 iEvents = 0;
-                //Events.OrderByDescending(x => x.Time);
+                var eventOrder = Events.OrderBy(x => x.Time).ToList();
+                Events.Clear();
+                int evntNumber = 1;
+                foreach (var evnt in eventOrder)
+                {
+                    evnt.Name = AddFormatEventName(evnt.Name, evnt.Time, evntNumber++, true);
+                    Events.Add((Event)evnt);
+                }
                 IsBusy = false;
             }
         }
