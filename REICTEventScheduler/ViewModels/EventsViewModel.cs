@@ -65,6 +65,18 @@ namespace REICTEventScheduler.ViewModels
         {
             string formattedEvent = RemoveFormatEventName(eventName, eventTime);
             string dayFormatter;
+
+            if (eventTime.DayOfWeek == DayOfWeek.Friday)
+            {
+                if (formattedEvent.ToUpper() == "DHUHR")
+                    formattedEvent = "Jumuah";
+            }
+            else
+            {
+                DateTime DhuhrTime = DateTime.Parse(eventTime.ToString("dd MMMM yyyy " + "13:00"));
+                eventTime = DhuhrTime;
+            }
+
             eventName = formattedEvent.Trim();
             if (eventTime.ToString("dd MMMM yyyy") == DateTime.Now.ToString("dd MMMM yyyy"))
                 dayFormatter = eventName + " Today";
@@ -259,7 +271,22 @@ namespace REICTEventScheduler.ViewModels
                             break;
 
                         if (!EventsFull)
-                            EventsFull = AddWaqtu(DateTime.Parse(salaahTime.date.readable + " " + salaahTime.timings.Dhuhr.Replace(" (SAST)", "")), "Dhuhr", ref iEventNumber);
+                        {
+                            DateTime eventTime = DateTime.Parse(salaahTime.date.readable + " " + salaahTime.timings.Dhuhr.Replace(" (SAST)", ""));
+                            string formattedEvent = "";
+                            if (eventTime.DayOfWeek == DayOfWeek.Friday)
+                            {
+                                formattedEvent = "Jumuah";
+                            }
+                            else
+                            {
+                                DateTime DhuhrTime = DateTime.Parse(eventTime.ToString("dd MMMM yyyy " + "13:00"));
+                                eventTime = DhuhrTime;
+                                formattedEvent = "Dhuhr";
+                            }
+
+                            EventsFull = AddWaqtu(eventTime, formattedEvent, ref iEventNumber);
+                        }
                         else
                             break;
 
