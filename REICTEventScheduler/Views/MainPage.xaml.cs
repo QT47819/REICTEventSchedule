@@ -23,7 +23,7 @@ namespace REICTEventScheduler.Views
             //MenuPages.Add((int)MenuItemType.Events, (NavigationPage)Detail);
         }
 
-        public async Task NavigateFromMenu(int id)
+        public void NavigateFromMenu(int id)
         {
             if (!MenuPages.ContainsKey(id))
             {
@@ -50,7 +50,7 @@ namespace REICTEventScheduler.Views
             {
                 MainPage mainPage = (MainPage)Application.Current.MainPage;
                 mainPage.Detail = newPage;
-                
+
                 IsPresented = true;
             }
         }

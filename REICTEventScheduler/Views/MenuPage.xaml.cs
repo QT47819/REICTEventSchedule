@@ -37,7 +37,7 @@ namespace REICTEventScheduler.Views
                     return;
 
                 var id = (int)((HomeMenuItem)e.SelectedItem).Id;
-                await new MainPage().NavigateFromMenu(id);
+                new MainPage().NavigateFromMenu(id);
             };
         }
     }

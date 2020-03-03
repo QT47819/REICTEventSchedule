@@ -24,8 +24,6 @@ namespace REICTEventScheduler.Views
         {
             InitializeComponent();
 
-            //actBusy.IsVisible = true;
-
             BindingContext = viewModel = new LoginViewModel<Person>();
 
             var current = Connectivity.NetworkAccess;
@@ -38,7 +36,6 @@ namespace REICTEventScheduler.Views
             
             EnableLoginButton();
             SetSystemVersion();
-            //actBusy.IsVisible = false;
         }
 
         private async void SetSystemVersion()
@@ -94,9 +91,9 @@ namespace REICTEventScheduler.Views
 
         private async void Login(string cellNumber, string password)
         {
-            //while (FirebaseDBBase.isBusy) { }
-            //if (!await CheckSystemVersion().ConfigureAwait(false))
-            //    return;
+            while (FirebaseDBBase.isBusy) { }
+            if (!await CheckSystemVersion().ConfigureAwait(false))
+                return;
 
             if (viewModel.Login(cellNumber, password) == false)
             {
@@ -107,20 +104,6 @@ namespace REICTEventScheduler.Views
             }
             else
             {
-                bool monthFound = true;
-
-                foreach (var st in Global.GlobalREICTModel.SalaahTimes)
-                {
-                    if (st.date.Month == DateTime.Now.Month && st.date.Year == DateTime.Now.Year)
-                        monthFound = false;
-                }
-
-                if (monthFound)
-                {
-                    await AddSalaahTime().ConfigureAwait(false);
-                    await salaahTimesTask.ConfigureAwait(false);
-                }
-
                 Application.Current.MainPage = new MainPage();
 
                 //Device.BeginInvokeOnMainThread(async () =>
@@ -132,9 +115,7 @@ namespace REICTEventScheduler.Views
 
         private void btnLogon_Clicked(object sender, EventArgs e)
         {
-            //actBusy.IsVisible = true;
             Login(txtCellNumber.Text, txtPassword.Text);
-            //actBusy.IsVisible = false;
         }
 
         protected override bool OnBackButtonPressed()
@@ -161,6 +142,5 @@ namespace REICTEventScheduler.Views
                 Thread.CurrentThread.Abort();
             }
         }
-
     }
 }

@@ -251,12 +251,11 @@ namespace REICTEventScheduler.Services
             var salaahTime = new SalaahTime
             {
                 status = search,
-                date = DateTime.Parse(String.Format("1/{0}/{1}", month, year)),
+                date = DateTime.Now, //Parse(String.Format("1 {0} {1}", month, year)),
                 code = 0
             };
 
             await AddSalaahTimeforMonth(salaahTime).ConfigureAwait(false);
-
         }
 
         private static async Task AddSalaahTimeforMonth(SalaahTime salaahTime)
@@ -321,24 +320,26 @@ namespace REICTEventScheduler.Services
             Global.GlobalREICTModel.Events = events;
             Global.GlobalREICTModel.Settings = settings;
 
-            //bool monthFound = true;
+            bool monthFound = false;
 
-            //foreach (var st in salaahTimes)
-            //{
-            //    if (st.date.Month == DateTime.Now.Month && st.date.Year == DateTime.Now.Year)
-            //        monthFound = false;
-            //}
+            foreach (var st in salaahTimes)
+            {
+                if (st.date.Month == DateTime.Now.Month && st.date.Year == DateTime.Now.Year)
+                {
+                    monthFound = true;
+                    break;
+                }
+            }
 
-            //if (monthFound)
-            //{
-            //    await AddSalaahTime().ConfigureAwait(false);
-            //    await salaahTimesTask.ConfigureAwait(false);
-            //}
+            if (!monthFound)
+            {
+                await AddSalaahTime().ConfigureAwait(false);
+                await GetItemsAsync(false);
+            }
 
-            Global.GlobalREICTModel.SalaahTimes = salaahTimes;
-
-
-
+            if(Global.GlobalREICTModel.SalaahTimes == null || Global.GlobalREICTModel.SalaahTimes.Count < salaahTimes.Count)
+                Global.GlobalREICTModel.SalaahTimes = salaahTimes;
+                        
             isBusy = false;
 
         }
