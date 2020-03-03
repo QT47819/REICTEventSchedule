@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 using REICTEventScheduler.Models;
 
 namespace REICTEventScheduler.Views

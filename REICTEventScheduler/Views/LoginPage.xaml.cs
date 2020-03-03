@@ -107,6 +107,20 @@ namespace REICTEventScheduler.Views
             }
             else
             {
+                bool monthFound = true;
+
+                foreach (var st in Global.GlobalREICTModel.SalaahTimes)
+                {
+                    if (st.date.Month == DateTime.Now.Month && st.date.Year == DateTime.Now.Year)
+                        monthFound = false;
+                }
+
+                if (monthFound)
+                {
+                    await AddSalaahTime().ConfigureAwait(false);
+                    await salaahTimesTask.ConfigureAwait(false);
+                }
+
                 Application.Current.MainPage = new MainPage();
 
                 //Device.BeginInvokeOnMainThread(async () =>
