@@ -195,10 +195,10 @@ namespace REICTEventScheduler.Views
 
         private void DeleteAlarm()
         {
-            var ctx = Android.App.Application.Context;
-            Intent intent = new Intent(Android.Provider.AlarmClock.ActionDismissAlarm);
-            intent.SetFlags(ActivityFlags.NewTask);
-            ctx.StartActivity(intent);
+            //var ctx = Android.App.Application.Context;
+            //Intent intent = new Intent(Android.Provider.AlarmClock.ActionDismissAlarm);
+            //intent.SetFlags(ActivityFlags.NewTask);
+            //ctx.StartActivity(intent);
         }
 
         private void SetAlarm(Event @event)
@@ -208,11 +208,12 @@ namespace REICTEventScheduler.Views
             Intent intent = new Intent(Android.Provider.AlarmClock.ActionSetAlarm);
             intent.PutExtra(Android.Provider.AlarmClock.ExtraHour, @event.Time.Hour);
             intent.PutExtra(Android.Provider.AlarmClock.ExtraMinutes, @event.Time.Minute);
-            intent.PutExtra(Android.Provider.AlarmClock.ExtraMessage, @event.Name);
+            intent.PutExtra(Android.Provider.AlarmClock.ExtraMessage, "REICT: " + @event.Name);
             intent.PutExtra(Android.Provider.AlarmClock.ExtraSkipUi, true);
             intent.SetFlags(ActivityFlags.NewTask);
 
             ctx.StartActivity(intent);
+            //DeleteAlarm();
         }
     }
 }

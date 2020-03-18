@@ -19,8 +19,6 @@ namespace REICTEventScheduler.Views
             InitializeComponent();
 
             MasterBehavior = MasterBehavior.Popover;
-
-            //MenuPages.Add((int)MenuItemType.Events, (NavigationPage)Detail);
         }
 
         public void NavigateFromMenu(int id)

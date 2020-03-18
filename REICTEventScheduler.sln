@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REICTEventScheduler.Android
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REICTEventScheduler.iOS", "REICTEventScheduler.iOS\REICTEventScheduler.iOS.csproj", "{B7722C01-3208-4CA3-A99B-7CD92274CFD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REICTEventScheduler", "REICTEventScheduler\REICTEventScheduler.csproj", "{407E2397-971D-4C86-A292-6A61A4FE67CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "REICTEventScheduler", "REICTEventScheduler\REICTEventScheduler.csproj", "{407E2397-971D-4C86-A292-6A61A4FE67CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
