@@ -1,12 +1,5 @@
-﻿using Android;
-using Android.App;
-using Android.Content;
-using Android.Media;
-using Android.Support.V4.App;
+﻿using Android.Content;
 using Android.Widget;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace REICTEventScheduler.Services
 {

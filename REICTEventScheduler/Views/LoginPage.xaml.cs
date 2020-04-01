@@ -27,8 +27,7 @@ namespace REICTEventScheduler.Views
             BindingContext = viewModel = new LoginViewModel<Person>();
 
             var current = Connectivity.NetworkAccess;
-            if (current != NetworkAccess.Internet)
-            
+            if (current != NetworkAccess.Internet)            
             {
                 DisplayMessage("No internet", "A connection to the internet is not available and is necessary for the application to function. Please connect to the internet.").ConfigureAwait(false);
                 ExitApplication();
